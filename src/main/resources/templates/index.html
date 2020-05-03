@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<body>
+
+<h3>This is my WeatherApp</h3>
+
+<p>Hvilken by vil du se vejret for?</p>
+<form>
+    <input type="text" name="name" id="name">
+    <input method ="get" type="submit" th:action="@{/weatherData/${name}}" value="OK">
+</form>
+
+
+
+</body>
+</html>

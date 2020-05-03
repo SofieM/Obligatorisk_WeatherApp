@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>WeatherData</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Base</th>
+        <th>Visibilty</th>
+        <th>dt</th>
+        <th>timezone</th>
+        <th>id</th>
+        <th>name</th>
+        <th>cod</th>
+    </tr>
+    <tr th:each="weatherData : ${weatherData}">
+        <td th:text="${weatherData.base}"></td>
+        <td th:text="${weatherData.visibility}"></td>
+        <td th:text="${weatherData.dt}"></td>
+        <td th:text="${weatherData.timezone}"></td>
+        <td th:text="${weatherData.id}"></td>
+        <td th:text="${weatherData.name}"></td>
+        <td th:text="${weatherData.cod}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
