@@ -3,27 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>WeatherData</title>
+    <style>
+
+        body{
+            font-family: arial, sans-serif;
+        }
+        #WeatherData table{
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+        }
+
+        #WeatherData th, #WeatherData td{
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        #WeatherData tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
 
+<h3 th:text="'Weather in ' + ${weatherData.name} + ', ' + ${weatherData.Sys.country}">Weather</h3>
+
+
 <table>
     <tr>
-        <th>Base</th>
-        <th>Visibilty</th>
-        <th>dt</th>
-        <th>timezone</th>
-        <th>id</th>
-        <th>name</th>
-        <th>cod</th>
+        <th></th>
+        <th></th>
     </tr>
-    <tr th:each="weatherData : ${weatherData}">
-        <td th:text="${weatherData.base}"></td>
-        <td th:text="${weatherData.visibility}"></td>
-        <td th:text="${weatherData.dt}"></td>
-        <td th:text="${weatherData.timezone}"></td>
-        <td th:text="${weatherData.id}"></td>
-        <td th:text="${weatherData.name}"></td>
-        <td th:text="${weatherData.cod}"></td>
+    <tr th:each="weather : ${weather}">
+        <td>
+            <img th:src="'http://openweathermap.org/img/wn/'+ ${weather.icon}+'@2x.png'">
+        </td>
+        <td th:text="${weatherData.Main.temp} + ' °C'"></td>
+    </tr>
+    <tr th:each="weather : ${weather}">
+        <td th:text="${weather.description}"></td>
+    </tr>
+</table>
+
+<p th:text="${#calendars.format(#calendars.createNow(), 'HH:mm dd MMM yyyy')}"></p>
+
+<table id="WeatherData">
+
+    <tr>
+        <th>Wind</th>
+        <td th:text="${weatherData.Wind.speed} + ' m/s'"> m/s</td>
+    </tr>
+    <tr>
+        <th>Pressure</th>
+        <td th:text="${weatherData.Main.pressure} + ' hpa'"> hpa</td>
+    </tr>
+    <tr>
+        <th>Humidity</th>
+        <td th:text="${weatherData.Main.humidity} + ' %'"> %</td>
+    </tr>
+    <tr>
+        <th>Sunrise</th>
+        <td th:text="${weatherData.Sys.sunrise}"></td>
+    </tr>
+    <tr>
+        <th>Sunset</th>
+        <td th:text="${weatherData.Sys.sunset}"></td>
     </tr>
 
 </table>

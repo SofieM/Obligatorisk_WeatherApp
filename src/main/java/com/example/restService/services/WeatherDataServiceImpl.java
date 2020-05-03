@@ -21,7 +21,7 @@ public class WeatherDataServiceImpl implements WeatherDataService {
 
     @Override
     public WeatherData getWeatherData(String name) {
-        WeatherData weatherData = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/weather?q="+name+"&appid=ce54c5c9c45455a666e135f9c90f31ee", WeatherData.class);
+        WeatherData weatherData = restTemplate.getForObject("http://api.openweathermap.org/data/2.5/weather?q="+name+"&units=metric&appid=ce54c5c9c45455a666e135f9c90f31ee", WeatherData.class);
         log.info(weatherData.toString());
         return weatherData;
     }
