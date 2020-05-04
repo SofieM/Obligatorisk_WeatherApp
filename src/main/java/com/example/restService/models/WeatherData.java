@@ -12,14 +12,14 @@ import java.util.Map;
 public class WeatherData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
     private Long wid;
 
     @OneToOne
     private Coord coord;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @OneToMany (cascade = CascadeType.ALL, mappedBy = "weatherData")
     private List<Weather> weather = null;
     private String base;
     @OneToOne
@@ -55,7 +55,27 @@ public class WeatherData {
         this.coord = coord;
     }
 
-    public List<Weather> getWeather() {
+//    public Weather getWeather() {
+//        List<Weather> allWeather = this.weather;
+//
+//        Weather weather1 = null;
+//        for (Weather weather: allWeather) {
+//
+//            Long wid = weather.getWid();
+//            Integer id = weather.getId();
+//            String main = weather.getMain();
+//            String description = weather.getDescription();
+//            String icon = weather.getIcon();
+//
+//            weather1 = new Weather(wid,id, main,description,icon);
+//
+//        }
+//
+//        return weather1;
+//    }
+
+    public List<Weather> getWeatherList(){
+
         return weather;
     }
 

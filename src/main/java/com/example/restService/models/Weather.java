@@ -12,13 +12,24 @@ public class Weather {
 
     @JsonIgnore
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long wid;
 
     private Integer id;
     private String main;
     private String description;
     private String icon;
+
+    public Weather(Long wid, Integer id, String main, String description, String icon) {
+        this.wid=wid;
+        this.id=id;
+        this.main=main;
+        this.description=description;
+        this.icon=icon;
+    }
+
+    public Weather() {
+    }
 
     @JsonIgnore
     @ManyToOne

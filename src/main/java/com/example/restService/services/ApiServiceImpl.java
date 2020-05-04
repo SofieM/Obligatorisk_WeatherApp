@@ -2,25 +2,35 @@ package com.example.restService.services;
 
 import com.example.restService.RestServiceApplication;
 import com.example.restService.models.WeatherData;
-import com.example.restService.repositories.WeatherDataRepository;
+import com.example.restService.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class WeatherDataServiceImpl implements WeatherDataService {
+public class ApiServiceImpl implements ApiService {
 
     @Autowired
     WeatherDataRepository weatherDataRepository;
+    @Autowired
+    CloudsRepository cloudsRepository;
+    @Autowired
+    CoordRepository coordRepository;
+    @Autowired
+    MainRepository mainRepository;
+    @Autowired
+    SysRepository sysRepository;
+    @Autowired
+    WeatherRepository weatherRepository;
+    @Autowired
+    WindRepository windRepository;
 
     private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
     private RestTemplate restTemplate;
 
-    public WeatherDataServiceImpl(RestTemplate restTemplate) {
+    public ApiServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -32,7 +42,11 @@ public class WeatherDataServiceImpl implements WeatherDataService {
     }
 
     public void saveWeatherData(WeatherData weatherData){
-
+        cloudsRepository.save(weatherData.getClouds());
+        coordRepository.save(weatherData.getCoord());
+        mainRepository.save(weatherData.getMain());
+        sysRepository.save(weatherData.getSys());
+        windRepository.save(weatherData.getWind());
         weatherDataRepository.save(weatherData);
     }
 }

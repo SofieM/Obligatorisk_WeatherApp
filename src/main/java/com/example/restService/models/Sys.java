@@ -11,7 +11,7 @@ public class Sys {
 
     @JsonIgnore
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sid;
 
     private Integer type;

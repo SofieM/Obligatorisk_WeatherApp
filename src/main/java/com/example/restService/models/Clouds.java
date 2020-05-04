@@ -5,27 +5,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sky")
 public class Clouds {
 
     @JsonIgnore
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer sky_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cloud_id;
 
-    @Column(name = "sky_data")
+    @Column(name = "cloud_data")
     private Integer all;
 
     @JsonIgnore
     @OneToOne
     private WeatherData weatherData;
 
-    public Integer getSky_id() {
-        return sky_id;
+    public Integer getCloud_id() {
+        return cloud_id;
     }
 
-    public void setSky_id(Integer sky_id) {
-        this.sky_id = sky_id;
+    public void setCloud_id(Integer cloud_id) {
+        this.cloud_id = cloud_id;
     }
 
     public Integer getAll() {
