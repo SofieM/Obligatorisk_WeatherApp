@@ -8,8 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import java.util.List;
 
@@ -28,9 +27,12 @@ public class HomeController {
     @GetMapping("weatherData/{name}")
     public String index (@PathVariable("name") String name, Model model){
 
-        model.addAttribute("weatherData", weatherDataService.getWeatherData(name));
-        List<Weather> weather = weatherDataService.getWeatherData(name).getWeather();
+        WeatherData weatherData = weatherDataService.getWeatherData(name);
+        model.addAttribute("weatherData", weatherData);
+        List<Weather> weather = weatherData.getWeather();
         model.addAttribute("weather", weather);
+        //nedenstående metode burde gemme weatherData objektet fra json, men det virker ikke :-/
+        //weatherDataService.saveWeatherData(weatherData);
          return "weatherData";
     }
 

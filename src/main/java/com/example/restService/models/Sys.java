@@ -1,16 +1,36 @@
 
 package com.example.restService.models;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
 public class Sys {
+
+    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long sid;
 
     private Integer type;
     private Integer id;
     private String country;
     private Integer sunrise;
     private Integer sunset;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonIgnore
+    @OneToOne
+    private WeatherData weatherData;
+
+    public Long getSid() {
+        return sid;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
 
     public Integer getType() {
         return type;
@@ -52,12 +72,12 @@ public class Sys {
         this.sunset = sunset;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public WeatherData getWeatherData() {
+        return weatherData;
     }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setWeatherData(WeatherData weatherData) {
+        this.weatherData = weatherData;
     }
 
     @Override
@@ -68,7 +88,6 @@ public class Sys {
                 ", country='" + country + '\'' +
                 ", sunrise=" + sunrise +
                 ", sunset=" + sunset +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

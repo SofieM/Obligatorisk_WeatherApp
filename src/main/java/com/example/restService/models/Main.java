@@ -1,10 +1,18 @@
 
 package com.example.restService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
-
+@Entity
 public class Main {
+
+    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long mid;
 
     private Double temp;
     private Double feelsLike;
@@ -12,7 +20,18 @@ public class Main {
     private Double tempMax;
     private Integer pressure;
     private Integer humidity;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonIgnore
+    @OneToOne
+    private WeatherData weatherData;
+
+    public Long getMid() {
+        return mid;
+    }
+
+    public void setMid(Long mid) {
+        this.mid = mid;
+    }
 
     public Double getTemp() {
         return temp;
@@ -62,12 +81,12 @@ public class Main {
         this.humidity = humidity;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public WeatherData getWeatherData() {
+        return weatherData;
     }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setWeatherData(WeatherData weatherData) {
+        this.weatherData = weatherData;
     }
 
     @Override
@@ -79,7 +98,6 @@ public class Main {
                 ", tempMax=" + tempMax +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

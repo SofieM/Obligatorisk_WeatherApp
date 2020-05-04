@@ -1,14 +1,34 @@
 
 package com.example.restService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
 public class Coord {
+
+    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long cid;
 
     private Double lon;
     private Double lat;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @JsonIgnore
+    @OneToOne
+    private WeatherData weatherData;
+
+    public Long getCid() {
+        return cid;
+    }
+
+    public void setCid(Long cid) {
+        this.cid = cid;
+    }
 
     public Double getLon() {
         return lon;
@@ -26,12 +46,12 @@ public class Coord {
         this.lat = lat;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+    public WeatherData getWeatherData() {
+        return weatherData;
     }
 
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+    public void setWeatherData(WeatherData weatherData) {
+        this.weatherData = weatherData;
     }
 
     @Override
@@ -39,7 +59,6 @@ public class Coord {
         return "Coord{" +
                 "lon=" + lon +
                 ", lat=" + lat +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

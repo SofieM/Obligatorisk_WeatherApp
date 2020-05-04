@@ -1,27 +1,51 @@
 
 package com.example.restService.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@Entity
 public class WeatherData {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    private Long wid;
+
+    @OneToOne
     private Coord coord;
+
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Weather> weather = null;
     private String base;
+    @OneToOne
     private Main main;
     private Integer visibility;
+    @OneToOne
     private Wind wind;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Clouds clouds;
+
     private Integer dt;
+    @OneToOne
     private Sys sys;
     private Integer timezone;
     private Integer id;
     private String name;
     private Integer cod;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    public Long getWid() {
+        return wid;
+    }
+
+    public void setWid(Long wid) {
+        this.wid = wid;
+    }
 
     public Coord getCoord() {
         return coord;
@@ -127,14 +151,6 @@ public class WeatherData {
         this.cod = cod;
     }
 
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
-
     @Override
     public String toString() {
         return "WeatherData{" +
@@ -144,14 +160,12 @@ public class WeatherData {
                 ", main=" + main +
                 ", visibility=" + visibility +
                 ", wind=" + wind +
-                ", clouds=" + clouds +
                 ", dt=" + dt +
                 ", sys=" + sys +
                 ", timezone=" + timezone +
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", cod=" + cod +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }
