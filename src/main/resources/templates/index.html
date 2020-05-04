@@ -10,8 +10,10 @@
 
 <p>Hvilken by vil du se vejret for?</p>
 <form>
-    <input type="text" name="name" id="name">
-    <input method ="get" type="submit" th:action="@{/weatherData/${name}}" value="OK">
+    <input type="text" name="name">
+    <a th:href="${'/weatherData/ + name'}">
+    <input type="submit"value="OK">
+    </a>
 </form>
 
 

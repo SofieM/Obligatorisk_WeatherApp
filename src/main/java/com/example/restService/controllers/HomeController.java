@@ -6,6 +6,7 @@ import com.example.restService.services.WeatherDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +19,13 @@ public class HomeController {
     @Autowired
     WeatherDataService weatherDataService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String index(Model model){
 
         return "index";
     }
 
-    @RequestMapping(value = "/weatherData/{name}", method = RequestMethod.GET)
+    @GetMapping("weatherData/{name}")
     public String index (@PathVariable("name") String name, Model model){
 
         model.addAttribute("weatherData", weatherDataService.getWeatherData(name));
