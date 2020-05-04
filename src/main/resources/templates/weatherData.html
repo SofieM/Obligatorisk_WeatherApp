@@ -35,7 +35,7 @@
     </tr>
     <tr th:each="weather : ${weather}">
         <td>
-            <img th:src="'http://openweathermap.org/img/wn/'+ ${weather.icon}+'@2x.png'">
+            <img th:src="'http://openweathermap.org/img/wn/'+${weather.icon}+'@2x.png'">
         </td>
         <td th:text="${weatherData.Main.temp} + ' °C'"></td>
     </tr>
@@ -44,7 +44,7 @@
     </tr>
 </table>
 
-<p th:text="${#calendars.format(#calendars.createNow(), 'HH:mm dd MMM yyyy')}"></p>
+<p th:text="${#calendars.format(#calendars.createNow(), 'HH:mm dd MMM')}"></p>
 
 <table id="WeatherData">
 
@@ -67,6 +67,10 @@
     <tr>
         <th>Sunset</th>
         <td th:text="${weatherData.Sys.sunset}"></td>
+    </tr>
+    <tr>
+        <th>Geo Coords</th>
+        <td th:text="'[' +${weatherData.Coord.lat} +', ' + ${weatherData.Coord.lon}+']'"></td>
     </tr>
 
 </table>
