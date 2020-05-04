@@ -28,7 +28,7 @@ public class WeatherData {
     @OneToOne
     private Wind wind;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Clouds clouds;
 
     private Integer dt;
@@ -54,25 +54,6 @@ public class WeatherData {
     public void setCoord(Coord coord) {
         this.coord = coord;
     }
-
-//    public Weather getWeather() {
-//        List<Weather> allWeather = this.weather;
-//
-//        Weather weather1 = null;
-//        for (Weather weather: allWeather) {
-//
-//            Long wid = weather.getWid();
-//            Integer id = weather.getId();
-//            String main = weather.getMain();
-//            String description = weather.getDescription();
-//            String icon = weather.getIcon();
-//
-//            weather1 = new Weather(wid,id, main,description,icon);
-//
-//        }
-//
-//        return weather1;
-//    }
 
     public List<Weather> getWeatherList(){
 

@@ -23,8 +23,6 @@ public class ApiServiceImpl implements ApiService {
     @Autowired
     SysRepository sysRepository;
     @Autowired
-    WeatherRepository weatherRepository;
-    @Autowired
     WindRepository windRepository;
 
     private static final Logger log = LoggerFactory.getLogger(RestServiceApplication.class);
